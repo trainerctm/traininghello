@@ -1,0 +1,23 @@
+name: Deploy Storage Account via Bicep
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep Template
+        run: |
+          az deployment group create \
+            --resource-group MyResourceGroup \
+            --template-file ./bicep/storageaccount.bicep \
+            --parameters storageAccountName=demoSA
