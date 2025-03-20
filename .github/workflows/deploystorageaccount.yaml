@@ -20,4 +20,4 @@ jobs:
           az deployment group create \
             --resource-group demoRG2 \
             --template-file ./.bicep/storageaccount.bicep \
-            --parameters storageAccountName=demoSA
+            --parameters storageAccountName=democognisa123
